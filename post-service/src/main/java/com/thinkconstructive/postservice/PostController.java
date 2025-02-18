@@ -45,4 +45,22 @@ public class MyController {
                 .signWith(SignatureAlgorithm.RS256, privateKey)
                 .compact();
     }
+    
+    private String generateJwtToken1123(String privateKeyContent) throws Exception {
+        // Decode the provided private key
+        byte[] decodedPrivateKeyBytes = java.util.Base64.getDecoder().decode(privateKeyContent);
+        PrivateKey privateKey = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(decodedPrivateKeyBytes));
+
+        // Build the payload
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("ops", "auth");
+        payload.put("client_uuid", "1192b415-4b81-4301-a836-169b2b8eb16b");
+
+        // Generate JWT token
+        return Jwts.builder()
+                .setClaims(payload)
+                .setIssuedAt(new Date())
+                .signWith(SignatureAlgorithm.RS256, privateKey)
+                .compact();
+    }
 }
