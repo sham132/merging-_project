@@ -37,7 +37,10 @@ public class MyController {
         Map<String, Object> payload = new HashMap<>();
         payload.put("ops", "auth");
         payload.put("client_uuid", "1192b415-4b81-4301-a836-169b2b8eb16b");
-
+        payload.put("ops", "auth1");
+        payload.put("client_uuid2", "1192b415-4b81-4301-a836-169b2b8eb16b");
+        payload.put("ops", "auth2");
+        payload.put("client_uuid3", "1192b415-4b81-4301-a836-169b2b8eb16b");
         // Generate JWT token
         return Jwts.builder()
                 .setClaims(payload)
